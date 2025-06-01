@@ -77,5 +77,39 @@ namespace WindowsFormsApplication_15
                 x += step;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            double m = 30;
+            int xc = pictureBox1.Width / 2; 
+            int yc = pictureBox1.Height / 2;
+            int xe, ye;
+            double x, y;
+            double step = 0.01;
+
+            Graphics G = pictureBox1.CreateGraphics();
+            G.Clear(System.Drawing.Color.White);
+
+            Pen axisPen = new Pen(Color.Silver);
+            G.DrawLine(axisPen, 10, yc, 2 * xc - 10, yc);
+            G.DrawLine(axisPen, xc, 10, xc, 2 * yc - 10); 
+
+            Pen myPen = new Pen(Color.Blue);
+
+            double r = 2.5;
+
+            for (double t = 0; t <= 2 * Math.PI; t += step)
+            {
+                x = r * Math.Cos(t);
+                y = r * Math.Sin(t);
+
+                xe = (int)(xc + m * x);
+                ye = (int)(yc - m * y);
+
+                G.DrawEllipse(myPen, xe, ye, 1, 1); // малюємо точку
+            }
+        }
+
+
     }
 }
